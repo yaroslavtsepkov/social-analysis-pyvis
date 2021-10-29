@@ -6,10 +6,10 @@ from pyvis import network
 def main():
 
     minmaxscaler = lambda series, coeff : coeff * (series - series.min()) / (series.max() - series.min())
-    nodes = pd.read_csv("source_code/dataset/stack_network_nodes.csv", dtype={"name":str, "group":int, "nodesize":float})
+    nodes = pd.read_csv("source_code/dataset/stackoverlow/stack_network_links.csv", dtype={"name":str, "group":int, "nodesize":float})
     nodes.columns = ["label", "group", "nodesize"]
     nodes.nodesize = minmaxscaler(nodes.nodesize, 50)
-    edges = pd.read_csv("source_code/dataset/stack_network_links.csv", dtype={"sourse":str, "target":str, "value":float})
+    edges = pd.read_csv("source_code/dataset/stackoverlow/stack_network_nodes.csv", dtype={"sourse":str, "target":str, "value":float})
     edges.columns = ["source", "target", "weight"]
     G = nx.MultiDiGraph()
     for idx, row in nodes.iterrows():
